@@ -97,10 +97,6 @@ namespace Draven
 
         private static void Drawing_OnDraw(EventArgs args)
         {
-            foreach (var riu in Riu)
-            {
-                Render.Circle.DrawCircle(riu.Position, 200, Color.Red);
-            }
         }
         public static void onclick(WndEventArgs args)
         {
