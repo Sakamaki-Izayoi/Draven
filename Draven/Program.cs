@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -90,8 +90,17 @@ namespace Draven
             Interrupter2.OnInterruptableTarget += interrupt;
             AntiGapcloser.OnEnemyGapcloser += gapcloser;
             Game.OnWndProc += onclick;
+            Drawing.OnDraw += Drawing_OnDraw;
             //Missile.OnCreate += Missle;
             Game.PrintChat("Welcome to Draven World");
+        }
+
+        private static void Drawing_OnDraw(EventArgs args)
+        {
+            foreach (var riu in Riu)
+            {
+                Render.Circle.DrawCircle(riu.Position, 200, Color.Red);
+            }
         }
         public static void onclick(WndEventArgs args)
         {
@@ -124,16 +133,15 @@ namespace Draven
         {
             if (!sender.IsMe)
                 return;
-            //Game.PrintChat(args.SData.Name);
-            if (/* args.SData.Name.ToLower().Contains("basicattack") || args.SData.Name.ToLower().Contains("critattack") ||*/ args.SData.Name.ToLower().Contains("spinningtattack"))
+            if (/* args.SData.Name.ToLower().Contains("basicattack") || args.SData.Name.ToLower().Contains("critattack") ||*/ args.SData.Name.ToLower().Contains("dravenrcast"))
             {
+                Rcount = Utils.GameTimeTickCount;
+                args.SData.IsAutoAttack();
             }
         }
         public static void OnCreate(GameObject sender, EventArgs args)
         {
-            ///*if (sender.Name.ToLower().Contains("draven"))*/ { Game.PrintChat(sender.Name); }
-            if (sender.Name.ToLower().Contains("q_reticle_self")) { Riu.Add(new Riu(sender, Environment.TickCount, sender.Position, sender.NetworkId));}
-            if (sender.Name.ToLower() == "linemissile") { Rcount = Environment.TickCount; }
+            if (sender.Name.ToLower().Contains("q_reticle_self")) {Riu.Add(new Riu(sender, Utils.GameTimeTickCount, sender.Position, sender.NetworkId)); }
         }
         public static void OnDelete(GameObject sender, EventArgs args)
         {
