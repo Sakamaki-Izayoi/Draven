@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -230,9 +230,9 @@ namespace Draven
         /// </summary>
         public static bool CanAttack()
         {
-            if (LastAATick <= Utils.TickCount)
+            if (LastAATick <= Utils.GameTimeTickCount)
             {
-                return Utils.TickCount + Game.Ping / 2 + 25 >= LastAATick + Player.AttackDelay * 1000 && Attack;
+                return Utils.GameTimeTickCount + Game.Ping / 2 + 25 >= LastAATick + Player.AttackDelay * 1000 && Attack;
             }
 
             return false;
@@ -243,11 +243,11 @@ namespace Draven
         /// </summary>
         public static bool CanMove(float extraWindup)
         {
-            if (LastAATick <= Utils.TickCount)
+            if (LastAATick <= Utils.GameTimeTickCount)
             {
                 return Move && /*NoCancelChamps.Contains(Player.ChampionName)
                     ? (Utils.TickCount - LastAATick > 250)
-                    :*/ (Utils.TickCount + Game.Ping / 2 >= LastAATick + Player.AttackCastDelay * 1000 + extraWindup);
+                    :*/ (Utils.GameTimeTickCount + Game.Ping / 2 >= LastAATick + Player.AttackCastDelay * 1000 + extraWindup);
             }
 
             return false;
@@ -279,12 +279,12 @@ namespace Draven
             bool useFixedDistance = true,
             bool randomizeMinDistance = true)
         {
-            if (Utils.TickCount - LastMoveCommandT < _delay && !overrideTimer)
+            if (Utils.GameTimeTickCount - LastMoveCommandT < _delay && !overrideTimer)
             {
                 return;
             }
 
-            LastMoveCommandT = Utils.TickCount;
+            LastMoveCommandT = Utils.GameTimeTickCount;
 
             if (Player.ServerPosition.Distance(position, true) < holdAreaRadius * holdAreaRadius)
             {
@@ -346,7 +346,6 @@ namespace Draven
 
                         if (_lastTarget != null && _lastTarget.IsValid && _lastTarget != target)
                         {
-                            LastAATick = Utils.TickCount + Game.Ping / 2;
                         }
 
                         _lastTarget = target;
@@ -400,7 +399,7 @@ namespace Draven
                 if (unit.IsMe &&
                     (Spell.Target is Obj_AI_Base || Spell.Target is Obj_BarracksDampener || Spell.Target is Obj_HQ))
                 {
-                    LastAATick = Utils.TickCount - Game.Ping / 2;
+                    LastAATick = Utils.GameTimeTickCount - Game.Ping / 2;
 
                     if (Spell.Target is Obj_AI_Base)
                     {
