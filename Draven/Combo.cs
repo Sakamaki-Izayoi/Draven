@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +25,7 @@ namespace Draven
                 if (Orbwalking.InAutoAttackRange(target) && target != null && target.IsValidTarget() && !target.IsZombie)
                 {
                     if (Qbuff == null) { Program.Q.Cast(); }
-                    else if (Qbuff.Count + Program.Riu.Count <= 3 && Qbuff.Count <= 1) { Program.Q.Cast(); }
+                    else if (Qbuff.Count + Program.Riu.Count < 2 && Qbuff.Count <= 1) { Program.Q.Cast(); }
                 }
             }
             if (Program.W.IsReady() && Program.Menu.Item("Use W Combo").GetValue<bool>())
@@ -59,7 +59,7 @@ namespace Draven
                 var target =TargetSelector.GetTarget(1400 , TargetSelector.DamageType.Physical);
                 if (Program.R.Instance.Name.ToLower().Contains("dravenrcast") && target != null && target.IsValidTarget() && !target.IsZombie && Program.Menu.Item("Use R Combo").GetValue<bool>() && !Player.IsWindingUp && target.Health / target.MaxHealth * 100 < Program.Menu.Item("Use R If EnemyHP below").GetValue<Slider>().Value)
                 { Program.R.Cast(target); }
-                else if (Program.R.Instance.Name.ToLower().Contains("dravenrdoublecast") && target != null && target.IsValidTarget() && !target.IsZombie && (Environment.TickCount - Program.Rcount) * 2 >= Player.Distance(target.Position) && Program.Menu.Item("Use R Return Combo").GetValue<bool>())
+                else if (Program.R.Instance.Name.ToLower().Contains("dravenrdoublecast") && target != null && target.IsValidTarget() && !target.IsZombie && (Utils.GameTimeTickCount - Program.Rcount) * 2 >= Player.Distance(target.Position) && Program.Menu.Item("Use R Return Combo").GetValue<bool>())
                 { Program.R.Cast(); }
             }
         }
@@ -74,7 +74,7 @@ namespace Draven
                 if (Orbwalking.InAutoAttackRange(target) && target != null && target.IsValidTarget() && !target.IsZombie)
                 {
                     if (Qbuff == null) { Program.Q.Cast(); }
-                    else if (Qbuff.Count + Program.Riu.Count <= 3 && Qbuff.Count <= 1) { Program.Q.Cast(); }
+                    else if (Qbuff.Count + Program.Riu.Count < 2 && Qbuff.Count <= 1) { Program.Q.Cast(); }
                 }
             }
             if (Program.W.IsReady() && Program.Menu.Item("Use W Harass").GetValue<bool>() && Player.Mana / Player.MaxMana * 100 > Program.Menu.Item("minimum Mana HR").GetValue<Slider>().Value)
@@ -115,7 +115,7 @@ namespace Draven
                 if (Orbwalking.InAutoAttackRange(target) && target != null && target.IsValidTarget() && !target.IsZombie)
                 {
                     if (Qbuff == null) { Program.Q.Cast(); }
-                    else if (Qbuff.Count + Program.Riu.Count <= 3 && Qbuff.Count <= 1) { Program.Q.Cast(); }
+                    else if (Qbuff.Count + Program.Riu.Count < 2 && Qbuff.Count <= 1) { Program.Q.Cast(); }
                 }
             }
             if (Program.W.IsReady() && Program.Menu.Item("Use W LaneClear").GetValue<bool>() && Player.Mana / Player.MaxMana * 100 > Program.Menu.Item("minimum Mana LC").GetValue<Slider>().Value)
@@ -141,7 +141,7 @@ namespace Draven
                 if (Orbwalking.InAutoAttackRange(target) && target != null && target.IsValidTarget() && !target.IsZombie)
                 {
                     if (Qbuff == null) { Program.Q.Cast(); }
-                    else if (Qbuff.Count + Program.Riu.Count <= 3 && Qbuff.Count <= 1) { Program.Q.Cast(); }
+                    else if (Qbuff.Count + Program.Riu.Count < 2 && Qbuff.Count <= 1) { Program.Q.Cast(); }
                 }
             }
             if (Program.W.IsReady() && Program.Menu.Item("Use W JungClear").GetValue<bool>() && Player.Mana / Player.MaxMana * 100 > Program.Menu.Item("minimum Mana JC").GetValue<Slider>().Value)
