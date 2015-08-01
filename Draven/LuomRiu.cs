@@ -30,7 +30,7 @@ namespace Draven
                     {
                         if (Player.Distance(RiuNo1.Position) >= 120 && Player.Distance(RiuNo1.Position) + 50 > Player.MoveSpeed * (1250 - (Utils.GameTimeTickCount - RiuNo1.CreationTime))/1000)
                         {
-                            foreach (var riu in Riu) { if (riu.NetworkId == RiuNo1.NetworkId) { Game.PrintChat("remove1"); Riu.Remove(riu); } }
+                            foreach (var riu in Riu) { if (riu.NetworkId == RiuNo1.NetworkId) {Riu.Remove(riu); } }
                             Orbwalker.SetOrbwalkingPoint(Game.CursorPos);
                             Orbwalker.SetMovement(true);
                             Orbwalker.SetAttack(true);
@@ -63,7 +63,7 @@ namespace Draven
                     }
                     else
                     {
-                        foreach (var riu in Riu) { if (riu.NetworkId == RiuNo1.NetworkId) { Game.PrintChat("remove2"); Riu.Remove(riu); } }
+                        foreach (var riu in Riu) { if (riu.NetworkId == RiuNo1.NetworkId) { Riu.Remove(riu); } }
                         Orbwalker.SetOrbwalkingPoint(Game.CursorPos);
                         Orbwalker.SetMovement(true);
                         Orbwalker.SetAttack(true);
