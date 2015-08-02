@@ -73,8 +73,7 @@ namespace Draven
                 var target = TargetSelector.GetTarget(700, TargetSelector.DamageType.Physical);
                 if (Orbwalking.InAutoAttackRange(target) && target != null && target.IsValidTarget() && !target.IsZombie)
                 {
-                    if (Qbuff == null) { Program.Q.Cast(); }
-                    else if (Qbuff.Count + Program.Riu.Count < 2 && Qbuff.Count <= 1) { Program.Q.Cast(); }
+                    if (Qbuff == null && Program.Riu.Count < 1) { Program.Q.Cast(); }
                 }
             }
             if (Program.W.IsReady() && Program.Menu.Item("Use W Harass").GetValue<bool>() && Player.Mana / Player.MaxMana * 100 > Program.Menu.Item("minimum Mana HR").GetValue<Slider>().Value)
@@ -114,8 +113,7 @@ namespace Draven
             {
                 if (Orbwalking.InAutoAttackRange(target) && target != null && target.IsValidTarget() && !target.IsZombie)
                 {
-                    if (Qbuff == null) { Program.Q.Cast(); }
-                    else if (Qbuff.Count + Program.Riu.Count < 2 && Qbuff.Count <= 1) { Program.Q.Cast(); }
+                    if (Qbuff == null && Program.Riu.Count < 1) { Program.Q.Cast(); }
                 }
             }
             if (Program.W.IsReady() && Program.Menu.Item("Use W LaneClear").GetValue<bool>() && Player.Mana / Player.MaxMana * 100 > Program.Menu.Item("minimum Mana LC").GetValue<Slider>().Value)
@@ -140,8 +138,7 @@ namespace Draven
             {
                 if (Orbwalking.InAutoAttackRange(target) && target != null && target.IsValidTarget() && !target.IsZombie)
                 {
-                    if (Qbuff == null) { Program.Q.Cast(); }
-                    else if (Qbuff.Count + Program.Riu.Count < 2 && Qbuff.Count <= 1) { Program.Q.Cast(); }
+                    if (Qbuff == null && Program.Riu.Count < 1) { Program.Q.Cast(); }
                 }
             }
             if (Program.W.IsReady() && Program.Menu.Item("Use W JungClear").GetValue<bool>() && Player.Mana / Player.MaxMana * 100 > Program.Menu.Item("minimum Mana JC").GetValue<Slider>().Value)
