@@ -454,7 +454,7 @@ namespace Draven
             private readonly Obj_AI_Hero Player;
             private Obj_AI_Base _forcedTarget;
             private OrbwalkingMode _mode = OrbwalkingMode.None;
-            private Vector3 _orbwalkingPoint;
+            public Vector3 _orbwalkingPoint;
             private Obj_AI_Minion _prevMinion;
 
             public Orbwalker(Menu attachToMenu)
