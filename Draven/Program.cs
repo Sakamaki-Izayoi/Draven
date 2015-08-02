@@ -97,6 +97,8 @@ namespace Draven
 
         private static void Drawing_OnDraw(EventArgs args)
         {
+            if (RiuNo1 != null)
+                Render.Circle.DrawCircle(RiuNo1.Position, 200, Color.Red);
         }
         public static void onclick(WndEventArgs args)
         {
@@ -147,7 +149,8 @@ namespace Draven
         public static void Game_OnGameUpdate(EventArgs args)
         {
             RiuNo1 = RiuNo1.RiuSo1();
-            LuomRiu.LuomRiuTest();
+            //LuomRiu.LuomRiuTest();
+            LuomRiu.lumriu();
             //checkbuff();
             if (Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
