@@ -84,9 +84,9 @@ namespace Draven
 
         private static void Obj_SpellMissile_OnCreate(GameObject sender, EventArgs args)
         {
-            if (sender.IsValid<Obj_SpellMissile>())
+            if (sender.IsValid<MissileClient>())
             {
-                var missile = (Obj_SpellMissile)sender;
+                var missile = (MissileClient)sender;
                 if (missile.SpellCaster.IsValid<Obj_AI_Hero>() && IsAutoAttack(missile.SData.Name))
                 {
                     FireAfterAttack(missile.SpellCaster, _lastTarget);
